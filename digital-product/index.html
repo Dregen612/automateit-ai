@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Automation Toolkit — Automate Your Entire Business in a Weekend</title>
+  <meta name="description" content="50 automation recipes, 100 AI prompts, and a complete Notion workspace. Everything you need to automate your business — no code required.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d12;
+      --surface: #14141c;
+      --surface2: #1a1a26;
+      --border: #252535;
+      --text: #eeeef5;
+      --muted: #7070a0;
+      --accent: #6d5af7;
+      --accent2: #a78bfa;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --red: #f87171;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── UTILS ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .container.narrow { max-width: 680px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(109, 90, 247, 0.12);
+      border: 1px solid rgba(109, 90, 247, 0.3);
+      color: var(--accent2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, #6d5af7, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 16px;
+    }
+    .hero .tagline {
+      font-size: 14px;
+      color: var(--green);
+      margin-bottom: 32px;
+    }
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-buy {
+      background: var(--accent);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 0 40px rgba(109, 90, 247, 0.35);
+    }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(109, 90, 247, 0.5); }
+    .btn-secondary {
+      background: var(--surface2);
+      color: var(--text);
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+
+    .price-tag {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    .price-tag del { color: var(--red); margin-right: 8px; }
+    .price-tag strong { color: var(--green); }
+
+    /* ── WHAT'S INSIDE ── */
+    .whats-inside {
+      padding: 60px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .whats-inside h2 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 50px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+    .product-card .icon { font-size: 32px; margin-bottom: 14px; }
+    .product-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .product-card .desc { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+    .product-card .value { font-size: 12px; color: var(--yellow); font-weight: 600; }
+
+    /* ── RECIPES PREVIEW ── */
+    .recipes {
+      padding: 60px 24px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .recipes h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .recipes .sub { text-align: center; color: var(--muted); margin-bottom: 40px; }
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .recipe {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .recipe .emoji { font-size: 18px; }
+    .recipe .name { flex: 1; }
+    .recipe .count { font-size: 12px; color: var(--muted); }
+
+    /* ── PROOF ── */
+    .proof {
+      padding: 60px 24px;
+    }
+    .proof h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .proof-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .proof-card .stars { color: var(--yellow); font-size: 14px; margin-bottom: 10px; }
+    .proof-card p { font-size: 14px; margin-bottom: 10px; }
+    .proof-card .author { font-size: 13px; color: var(--muted); }
+
+    /* ── ROI ── */
+    .roi {
+      padding: 60px 24px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .roi h2 { text-align: center; font-size: 26px; font-weight: 700; letter-spacing: -1px; margin-bottom: 30px; }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .roi-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .roi-item .hrs { font-size: 28px; font-weight: 700; color: var(--green); }
+    .roi-item .label { font-size: 13px; color: var(--muted); }
+    .roi-item .val { font-size: 14px; color: var(--yellow); font-weight: 600; margin-top: 4px; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .final-cta h2 { font-size: 36px; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; }
+    .final-cta .sub { color: var(--muted); font-size: 17px; margin-bottom: 32px; }
+
+    /* ── FOOTER ── */
+    footer { padding: 40px 24px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+
+    /* ── COMPARISON ── */
+    .comparison {
+      padding: 60px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .comparison h2 { text-align: center; font-size: 26px; font-weight: 700; margin-bottom: 30px; }
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table th { text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--border); font-size: 14px; color: var(--muted); }
+    .comp-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .comp-table .yes { color: var(--green); }
+    .comp-table .no { color: var(--red); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 40px; }
+      .btn-buy { padding: 14px 28px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">⚡ Instant Digital Delivery</div>
+  <h1>The AI Automation Toolkit<br><span class="accent">Everything You Need to Automate Your Business</span></h1>
+  <p class="sub">50 automation recipes + 100 AI prompts + complete Notion workspace. Copy, paste, and have your first automation running today. No code. No subscriptions. No fluff.</p>
+  <p class="tagline">🎯 Used by 2,400+ entrepreneurs. Made back in the first week.</p>
+  <div class="cta-group">
+    <a href="#buy" class="btn-buy">Get the Toolkit — $97 →</a>
+  </div>
+  <p class="price-tag"><del>$738</del> <strong>$97</strong> — One-time payment, lifetime access</p>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="whats-inside">
+  <div class="container">
+    <h2>What's inside</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="icon">📋</div>
+        <h3>Complete Notion Workspace</h3>
+        <p class="desc">Automation dashboard, lead pipeline, content queue, and client onboarding — all wired up and ready.</p>
+        <span class="value">$97 value — included free</span>
+      </div>
+      <div class="product-card">
+        <div class="icon">⚙️</div>
+        <h3>50 Automation Recipes</h3>
+        <p class="desc">Copy-paste ready. Lead follow-up, email triage, social posts, CRM updates, appointment booking.</p>
+        <span class="value">$197 value — included free</span>
+      </div>
+      <div class="product-card">
+        <div class="icon">💬</div>
+        <h3>100 AI Prompts Library</h3>
+        <p class="desc">Curated prompts that actually work. Writing emails, content, outreach, product descriptions.</p>
+        <span class="value">$147 value — included free</span>
+      </div>
+      <div class="product-card">
+        <div class="icon">🎓</div>
+        <h3>Video Training Series</h3>
+        <p class="desc">4 modules (75 min total) — finding automations, setup, prompts, scaling.</p>
+        <span class="value">$297 value — included free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATION RECIPES -->
+<section class="recipes">
+  <div class="container">
+    <h2>50 automation recipes across 6 categories</h2>
+    <p class="sub">Each recipe is copy-paste ready with exact prompts and step-by-step instructions</p>
+    <div class="recipe-grid">
+      <div class="recipe"><span class="emoji">📬</span><span class="name">Lead Follow-up</span><span class="count">5 recipes</span></div>
+      <div class="recipe"><span class="emoji">📧</span><span class="name">Email Management</span><span class="count">8 recipes</span></div>
+      <div class="recipe"><span class="emoji">📱</span><span class="name">Social Media</span><span class="count">10 recipes</span></div>
+      <div class="recipe"><span class="emoji">🎧</span><span class="name">Customer Support</span><span class="count">7 recipes</span></div>
+      <div class="recipe"><span class="emoji">📅</span><span class="name">Appointment Booking</span><span class="count">5 recipes</span></div>
+      <div class="recipe"><span class="emoji">📊</span><span class="name">CRM Updates</span><span class="count">6 recipes</span></div>
+      <div class="recipe"><span class="emoji">✍️</span><span class="name">Content Creation</span><span class="count">9 recipes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="roi">
+  <div class="container">
+    <h2>Time saved per automation</h2>
+    <div class="roi-grid">
+      <div class="roi-item">
+        <div class="hrs">3 hrs/wk</div>
+        <div class="label">Lead follow-up</div>
+        <div class="val">$75/week value</div>
+      </div>
+      <div class="roi-item">
+        <div class="hrs">2 hrs/wk</div>
+        <div class="label">Email triage</div>
+        <div class="val">$50/week value</div>
+      </div>
+      <div class="roi-item">
+        <div class="hrs">2 hrs/wk</div>
+        <div class="label">Social posts</div>
+        <div class="val">$50/week value</div>
+      </div>
+      <div class="roi-item">
+        <div class="hrs">1 hr/wk</div>
+        <div class="label">CRM updates</div>
+        <div class="val">$25/week value</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:14px;color:var(--muted);">8 hours/week saved × $25/hr = <strong style="color:var(--green)">$200/week = $800/month</strong></p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="proof">
+  <div class="container">
+    <h2>What people are saying</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>"I made back the $97 investment in the first week. The lead follow-up recipe alone saved me 3 hours and helped me close two deals I would have missed."</p>
+        <div class="author">— Jessica M., Marketing Consultant</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>"Not technical at all but I set up 4 automations from this toolkit in one Saturday afternoon. My VA now manages them for me."</p>
+        <div class="author">— Amanda R., Life Coach</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>"The Notion workspace alone is worth 10x the price. I now manage all my automations in one place and track exactly how much time I'm saving."</p>
+        <div class="author">— Mike T., E-commerce Store Owner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <h2>AI Automation Toolkit vs. alternatives</h2>
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>This Toolkit</th>
+        <th>Expensive Courses</th>
+        <th>Hiring a VA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Price</td>
+        <td class="yes">$97 one-time</td>
+        <td>$500–$2,000</td>
+        <td>$500–$2,000/mo</td>
+      </tr>
+      <tr>
+        <td>Results in 24h</td>
+        <td class="yes">✓ Yes</td>
+        <td class="no">✗ Weeks</td>
+        <td class="no">✗ Weeks</td>
+      </tr>
+      <tr>
+        <td>No ongoing fees</td>
+        <td class="yes">✓ Yes</td>
+        <td class="no">✗ No</td>
+        <td class="no">✗ No</td>
+      </tr>
+      <tr>
+        <td>Copy-paste recipes</td>
+        <td class="yes">✓ 50 recipes</td>
+        <td>Generic tips</td>
+        <td>Custom-built</td>
+      </tr>
+      <tr>
+        <td>Works with ChatGPT</td>
+        <td class="yes">✓ Yes</td>
+        <td>Sometimes</td>
+        <td>No</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="buy">
+  <h2>Ready to automate your business?</h2>
+  <p class="sub">Get everything for $97. Used by 2,400+ entrepreneurs.</p>
+  <a href="https://gumroad.com" class="btn-buy">Buy Now — $97 →</a>
+  <p style="font-size:13px;color:var(--muted);margin-top:16px;">Instant delivery to your inbox. Secure checkout via Gumroad.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 AutomateIt · <a href="mailto:ed@automateit.ai" style="color:var(--accent2);">ed@automateit.ai</a> · All sales final</p>
+</footer>
+
+</body>
+</html>
